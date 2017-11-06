@@ -3,7 +3,7 @@ using BirthdayGreeting2;
 
 namespace BirthdayGreetingTest.BirthdayCounting
 {
-    internal class BirthdayCounter
+    public class BirthdayCounter
     {
         
         private EmployeeRepository employeeRepo;

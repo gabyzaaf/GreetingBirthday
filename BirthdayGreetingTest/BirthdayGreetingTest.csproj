@@ -66,8 +66,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BirthdayCounting\BirthdayCounter.cs" />
     <Compile Include="BirthdayCounting\BirthdayCountingTest.cs" />
+    <Compile Include="BirthdayEmployees\BirthdayEmployeesService.cs" />
+    <Compile Include="BirthdayEmployees\BirthdayEmployeesTest.cs" />
     <Compile Include="GreetingSender\GreetingSenderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\RepositoryTest.cs" />
