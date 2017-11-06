@@ -14,7 +14,7 @@ namespace BirthdayGreeting2
             // RUN
             var runSender = NSubstitute.Substitute.For<ISender>();
             // ARANGE
-            runSender.Received().Send();
+            runSender.Received().Send(null);
             
         }
 
@@ -27,9 +27,24 @@ namespace BirthdayGreeting2
             var bithdayGreeting = new BirthdayGreeting(employee,runSender);
             
             // RUN
-            bithdayGreeting.Send();
+            bithdayGreeting.Send(null);
             // ARRANGE
-            runSender.Received().Send();
+            runSender.Received().Send(null);
+        }
+
+
+        [Test]
+        public void Should_Verify_The_Mock_With_Employee()
+        {
+            // SETUP
+            var employee = new Employee("Zaafrani", "Gabriel", "gabriel.zafrani@email.com", new DateTime(1990, 09, 20));
+            var runSender = NSubstitute.Substitute.For<ISender>();
+            var bithdayGreeting = new BirthdayGreeting(employee, runSender);
+
+            // RUN
+            bithdayGreeting.Send(employee);
+            // ARRANGE
+            runSender.Received().Send(employee);
         }
     }
 }

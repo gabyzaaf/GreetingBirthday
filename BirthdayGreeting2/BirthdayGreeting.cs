@@ -1,4 +1,6 @@
-﻿namespace BirthdayGreeting2
+﻿using System;
+
+namespace BirthdayGreeting2
 {
     public class BirthdayGreeting
     {
@@ -11,9 +13,11 @@
             this.runSender = runSender;
         }
 
-        public void Send()
+       
+
+        public void Send(Employee employee)
         {
-            runSender.Send();
+            runSender.Send(employee);
         }
     }
 }

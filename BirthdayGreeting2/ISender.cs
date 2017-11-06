@@ -2,6 +2,6 @@
 {
     public interface ISender
     {
-        void Send();
+        void Send(Employee employee);
     }
 }
