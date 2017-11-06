@@ -1,23 +1,32 @@
 ﻿using System;
+using BirthdayGreetingTest.Repository;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace BirthdayGreeting2
 {
     public class BirthdayGreeting
     {
-        private Employee employee;
-        private ISender runSender;
-
-        public BirthdayGreeting(Employee employee, ISender runSender)
-        {
-            this.employee = employee;
-            this.runSender = runSender;
-        }
+       
+        private IRepository repository;
+        private ISender sender;
 
        
 
+        public BirthdayGreeting(IRepository repository, ISender sender)
+        {
+            this.repository = repository;
+            this.sender = sender;
+        }
+
         public void Send(Employee employee)
         {
-            runSender.Send(employee);
+            sender.Send(employee);
+        }
+
+        public List<Candidate> ObtainsCandidateList()
+        {
+            return repository.ObtainsCandidateList();
         }
     }
 }

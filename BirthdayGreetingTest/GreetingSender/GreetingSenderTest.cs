@@ -6,17 +6,7 @@ namespace BirthdayGreeting2
 {
     public class GreetingSenderTest
     {
-        [Test]
-        public void Should_Verify_The_Mock_Is_Called()
-        {
-            // SETUP
-
-            // RUN
-            var runSender = NSubstitute.Substitute.For<ISender>();
-            // ARANGE
-            runSender.Received().Send(null);
-            
-        }
+       
 
         [Test]
         public void Should_Verify_The_Mock_Is_Called_With_GreetingBirthday()
@@ -24,12 +14,12 @@ namespace BirthdayGreeting2
             // SETUP
             var employee = new Employee("Zaafrani","Gabriel","gabriel.zafrani@email.com",new DateTime(1990,09,20));
             var runSender = NSubstitute.Substitute.For<ISender>();
-            var bithdayGreeting = new BirthdayGreeting(employee,runSender);
+            var bithdayGreeting = new BirthdayGreeting(null,runSender);
             
             // RUN
-            bithdayGreeting.Send(null);
+            bithdayGreeting.Send(employee);
             // ARRANGE
-            runSender.Received().Send(null);
+            runSender.Received().Send(employee);
         }
 
 
@@ -39,12 +29,14 @@ namespace BirthdayGreeting2
             // SETUP
             var employee = new Employee("Zaafrani", "Gabriel", "gabriel.zafrani@email.com", new DateTime(1990, 09, 20));
             var runSender = NSubstitute.Substitute.For<ISender>();
-            var bithdayGreeting = new BirthdayGreeting(employee, runSender);
+            var bithdayGreeting = new BirthdayGreeting(null, runSender);
 
             // RUN
             bithdayGreeting.Send(employee);
             // ARRANGE
             runSender.Received().Send(employee);
         }
+
+        
     }
 }
