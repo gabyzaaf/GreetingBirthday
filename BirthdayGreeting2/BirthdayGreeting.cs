@@ -19,7 +19,7 @@ namespace BirthdayGreeting2
             this.sender = sender;
         }
 
-        public void Send(Employee employee)
+        public void Send(List<Employee> employee)
         {
             sender.Send(employee);
         }
