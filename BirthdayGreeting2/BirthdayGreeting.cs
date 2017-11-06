@@ -24,9 +24,9 @@ namespace BirthdayGreeting2
             sender.Send(employee);
         }
 
-        public CandidatesRepository ObtainsCandidateList()
+        public EmployeeRepository ObtainsCandidateList()
         {
-            var candidateRepository = new CandidatesRepository(this.repository.ObtainsCandidateList());
+            var candidateRepository = new EmployeeRepository(this.repository.ObtainsCandidateList());
             return candidateRepository;
         }
     }

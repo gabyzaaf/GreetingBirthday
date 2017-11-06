@@ -39,18 +39,18 @@ namespace BirthdayGreetingTest.Repository
             
             // RUN
             var birthdayGreeting = new BirthdayGreeting(repository, sender);
-            repository.ObtainsCandidateList().Returns(new List<Candidate>()
+            repository.ObtainsCandidateList().Returns(new List<Employee>()
             {
-                new Candidate("zaafrani", "Gabriel", "gabriel.zaafrani@tuto.fr", new DateTime(1990, 09, 29)),
-                new Candidate("zaafrani", "Michael", "Michael.zaafrani@tuto.fr", new DateTime(1975, 12, 02)),
-                new Candidate("zaafrani", "Salomon", "salomon.zaafrani@tuto.fr", new DateTime(1956, 09, 19))
+                new Employee("zaafrani", "Gabriel", "gabriel.zaafrani@tuto.fr", new DateTime(1990, 09, 29)),
+                new Employee("zaafrani", "Michael", "Michael.zaafrani@tuto.fr", new DateTime(1975, 12, 02)),
+                new Employee("zaafrani", "Salomon", "salomon.zaafrani@tuto.fr", new DateTime(1956, 09, 19))
 
             });
             var candidateRepo = birthdayGreeting.ObtainsCandidateList();
             
             // ARRANGE
-            var birthdayNumber = candidateRepo.BirthdayIs(day, month);
-            Check.That(birthdayNumber).IsEqualTo(1);
+            var birthdayEmployees = candidateRepo.BirthdayIs(day, month);
+            Check.That(birthdayEmployees.Contain(new Employee("zaafrani", "Gabriel", "gabriel.zaafrani@tuto.fr", new DateTime(1990, 09, 29)))).IsTrue();
 
         }
     }

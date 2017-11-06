@@ -6,6 +6,6 @@ namespace BirthdayGreetingTest.Repository
 {
     public interface IRepository
     {
-        List<Candidate> ObtainsCandidateList();
+        List<Employee> ObtainsCandidateList();
     }
 }
