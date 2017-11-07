@@ -20,6 +20,17 @@ namespace BirthdayGreetingTest.BirthdayEmployees
             return new List<Employee>(this.employeeRepository.ObtainEmployees());
         }
 
+        public List<EmployeeInformations> BirthdayListInformations(int day,int month)
+        {
+            var employees = this.BirthdayList(day,month);
+            List <EmployeeInformations> employeeInformations = new List<EmployeeInformations>();
+            foreach (var employee in employees)
+            {
+                employeeInformations.Add(employee.Informations());
+            }
+            return employeeInformations;
+        }
+
         public Boolean Exist(Employee employe)
         {
             var employees = this.employeeRepository.ObtainEmployees();
@@ -32,6 +43,7 @@ namespace BirthdayGreetingTest.BirthdayEmployees
             }
             return false;
         }
+        
 
 
 

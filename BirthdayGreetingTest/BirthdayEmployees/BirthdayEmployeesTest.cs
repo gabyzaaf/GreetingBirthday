@@ -64,5 +64,32 @@ namespace BirthdayGreetingTest.BirthdayEmployees
             
             Check.That(employeeList.SequenceEqual(employeesEstimate) && employeesEstimate.SequenceEqual(employeeList)).IsTrue();
         }
+
+        [Test]
+        public void Should_Obtains_The_Employee_Informations()
+        {
+            // SETUP
+            var repo = NSubstitute.Substitute.For<IRepository>();
+            var greeting = new BirthdayGreeting(repo, null);
+            var employeesInformationsEstimate = new List<EmployeeInformations>()
+            {
+                new EmployeeInformations("zaafrani","Gabriel",new Email("gz@hotmail.com"),new DateTime(1990,09,09))
+            };
+
+            var employes = new List<Employee>()
+            {
+                new Employee("zaafrani", "Gabriel", "gz@hotmail.com", new DateTime(1990, 09, 09)),
+                new Employee("zaafrani", "Michael", "mz@hotmail.com", new DateTime(1991, 09, 29))
+            };
+
+            // RUN
+            repo.InjectEmployeesToSystem(employes).Returns(new EmployeeRepository(employes));
+            var birthdayEmployees = greeting.InjectEmployeesToSystemForObtainBirthdayList(employes);
+
+            // ARRANGE
+            List<EmployeeInformations> employeesInformation = birthdayEmployees.BirthdayListInformations(09, 09);
+            Check.That(employeesInformation.SequenceEqual(employeesInformationsEstimate) &&
+                       employeesInformationsEstimate.SequenceEqual(employeesInformation)).IsTrue();
+        }
     }
 }

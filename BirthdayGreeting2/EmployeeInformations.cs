@@ -3,29 +3,29 @@ using System.Collections.Generic;
 
 namespace BirthdayGreeting2
 {
-    public class Employee
+    public class EmployeeInformations
     {
         private string name;
         private string firstname;
         private Email email;
         private DateTime birthday;
 
-        public Employee(string name, string firstname, string email, DateTime birthday)
+        public EmployeeInformations(string name, string firstname, Email email, DateTime birthday)
         {
             this.name = name;
             this.firstname = firstname;
-            this.email = new Email(email);
+            this.email = email;
             this.birthday = birthday;
         }
 
         public override bool Equals(object obj)
         {
-            var employee = obj as Employee;
-            return employee != null &&
-                   name == employee.name &&
-                   firstname == employee.firstname &&
-                   EqualityComparer<Email>.Default.Equals(email, employee.email) &&
-                   birthday == employee.birthday;
+            var informations = obj as EmployeeInformations;
+            return informations != null &&
+                   name == informations.name &&
+                   firstname == informations.firstname &&
+                   EqualityComparer<Email>.Default.Equals(email, informations.email) &&
+                   birthday == informations.birthday;
         }
 
         public override int GetHashCode()
@@ -36,21 +36,6 @@ namespace BirthdayGreeting2
             hashCode = hashCode * -1521134295 + EqualityComparer<Email>.Default.GetHashCode(email);
             hashCode = hashCode * -1521134295 + birthday.GetHashCode();
             return hashCode;
-        }
-
-        public bool IsThisBirthday(int day, int month)
-        {
-            return birthday.Day == day && birthday.Month == month;
-        }
-
-        public bool EmailIsValid()
-        {
-            return email.IsValid();
-        }
-
-        public EmployeeInformations Informations()
-        {
-            return new EmployeeInformations(this.name,this.firstname,this.email,this.birthday);
         }
     }
 }

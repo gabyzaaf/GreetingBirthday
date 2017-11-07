@@ -55,8 +55,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmployeesFile.cs" />
-    <Compile Include="FileRepo.cs" />
     <Compile Include="ReadCsvFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,6 +66,10 @@
     <ProjectReference Include="..\BirthdayGreeting2\BirthdayGreeting2.csproj">
       <Project>{daf5cae1-5099-4c32-b00e-948e9fd3db9f}</Project>
       <Name>BirthdayGreeting2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileExtensionLibrary\FileExtensionLibrary.csproj">
+      <Project>{2f0e6630-a2f7-437a-ba3c-346663c111f9}</Project>
+      <Name>FileExtensionLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
