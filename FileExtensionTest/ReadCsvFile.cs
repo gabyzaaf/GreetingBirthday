@@ -15,6 +15,15 @@ namespace FileExtensionTest
     public class ReadCsvFile
     {
         private readonly string fileName = "Employees.csv";
+        private List<Employee> employee;
+
+        [SetUp]
+        public void Init()
+        {
+            var employeesFile = new EmployeesFile(fileName);
+            employee = employeesFile.Read();
+        }
+
 
         [Test]
         public void Should_ReadFile()
@@ -34,9 +43,7 @@ namespace FileExtensionTest
             // SETUP
             Employee employeeEstimate = new Employee("zaafrani","gabriel","gabriel.zaafrani@gmail.com",new DateTime(1990,09,29));
             //RUN
-            string file = null;
-            file = "Employees.csv";
-            var employee = ReadEmployeesFile(file);
+
             //ASSERT
             Check.That(employee[0]).IsEqualTo(employeeEstimate);
         }
@@ -49,48 +56,27 @@ namespace FileExtensionTest
                 new Employee("zaafrani","gabriel","gabriel.zaafrani@gmail.com",new DateTime(1990,09,29)),
                 new Employee("zaafrani","michael", "michael.zaafrani@gmail.com",new DateTime(1990,09,09))
             };
-            var file = "Employees.csv";
-            List<Employee> employees = ReadEmployeesFile(file);
-            Check.That(employees.SequenceEqual(employeesEstimate) && employeesEstimate.SequenceEqual(employees))
+           
+            Check.That(employee.SequenceEqual(employeesEstimate) && employeesEstimate.SequenceEqual(employee))
                 .IsTrue();
         }
 
         
 
-        private List<Employee> ReadEmployeesFile(string file)
-        {
-            List<Employee> employees = new List<Employee>();
-
-            var csvLines = File.ReadAllLines(file);
-            foreach (var line in csvLines)
-            {
-                var lineSplited = line.Split(';');
-                string name = lineSplited[0];
-                string firstname = lineSplited[1];
-                string email = lineSplited[2];
-
-                var dateSplited = lineSplited[3].Split('/');
-                int year = int.Parse(dateSplited[0]);
-                int month = int.Parse(dateSplited[1]);
-                int day = int.Parse(dateSplited[2]);
-                employees.Add(new Employee(name, firstname, email, new DateTime(year, month, day)));
-            }
-            return employees;
-        }
-
+        
         [Test]
         public void Should_Obtains_The_Birthday()
         {
             // SETUP
             IRepository repo = new FileRepo();
-            var employees = ReadEmployeesFile("Employees.csv");
+           
             BirthdayGreeting birthdayGreeting = new BirthdayGreeting(repo,null);
-            var service = birthdayGreeting.InjectEmployeesToSystemForObtainBirthdayList(employees);
+            var service = birthdayGreeting.InjectEmployeesToSystemForObtainBirthdayList(employee);
 
             // RUN
            
             var employeeList = service.BirthdayList(29, 09);
-
+          
             // ASSERT
             Check.That(service.Exist(new Employee("zaafrani", "gabriel", "gabriel.zaafrani@gmail.com",
                 new DateTime(1990, 09, 29)))).IsTrue();
