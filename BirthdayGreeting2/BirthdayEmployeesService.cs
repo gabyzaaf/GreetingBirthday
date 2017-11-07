@@ -2,7 +2,7 @@
 
 namespace BirthdayGreetingTest.BirthdayEmployees
 {
-    internal class BirthdayEmployeesService
+    public class BirthdayEmployeesService
     {
         private EmployeeRepository employeeRepository;
 
