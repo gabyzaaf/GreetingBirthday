@@ -22,9 +22,9 @@ namespace BirthdayGreetingTest.Repository
             var sender = NSubstitute.Substitute.For<ISender>();
             // RUN
             var birthdayGreeting = new BirthdayGreeting(repository, sender);
-            var candidateList = birthdayGreeting.ObtainsCandidateList();
+            birthdayGreeting.InjectEmployeesToSystem(null);
             // ARRANGE
-            repository.Received().ObtainsCandidateList();
+            repository.Received().InjectEmployeesToSystem(null);
 
         }
 
@@ -36,17 +36,22 @@ namespace BirthdayGreetingTest.Repository
             var sender = NSubstitute.Substitute.For<ISender>();
             int day = 29;
             int month = 09;
-            
-            // RUN
-            var birthdayGreeting = new BirthdayGreeting(repository, sender);
-            repository.ObtainsCandidateList().Returns(new List<Employee>()
+            var employeesValues = new List<Employee>()
             {
                 new Employee("zaafrani", "Gabriel", "gabriel.zaafrani@tuto.fr", new DateTime(1990, 09, 29)),
                 new Employee("zaafrani", "Michael", "Michael.zaafrani@tuto.fr", new DateTime(1975, 12, 02)),
                 new Employee("zaafrani", "Salomon", "salomon.zaafrani@tuto.fr", new DateTime(1956, 09, 19))
 
-            });
-            var candidateRepo = birthdayGreeting.ObtainsCandidateList();
+            };
+
+            // RUN
+            repository.InjectEmployeesToSystem(employeesValues).Returns(new EmployeeRepository(employeesValues));
+            var birthdayGreeting = new BirthdayGreeting(repository, sender);
+            
+
+           
+           
+            var candidateRepo = birthdayGreeting.InjectEmployeesToSystem(employeesValues);
             
             // ARRANGE
             var birthdayEmployees = candidateRepo.BirthdayIs(day, month);

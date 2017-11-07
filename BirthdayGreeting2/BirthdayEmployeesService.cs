@@ -13,8 +13,8 @@ namespace BirthdayGreetingTest.BirthdayEmployees
 
         public EmployeeRepository BirthdayList(int day, int month)
         {
-          EmployeeRepository employeeRepositorytmp = employeeRepository.BirthdayIsWithEmailValid(day, month);
-          return employeeRepositorytmp;
+            EmployeeRepository employeeRepositorytmp = employeeRepository.BirthdayIsWithEmailValid(day, month);
+            return employeeRepositorytmp;
         }
     }
 }
