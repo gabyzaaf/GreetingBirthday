@@ -20,14 +20,18 @@ namespace BirthdayGreetingTest.BirthdayEmployees
             // SETUP
             var repo = NSubstitute.Substitute.For<IRepository>();
             var greeting = new BirthdayGreeting(repo,null);
-            
-            // RUN
-            repo.ObtainsCandidateList().Returns(new List<Employee>()
+
+            var employees = new List<Employee>()
             {
-                new Employee("zaafrani","Gabriel","gz@hotmail.com",new DateTime(1990,09,09)),
-                new Employee("zaafrani","Michael","mz@hotmail.com",new DateTime(1991,09,29))
-            });
-            var employeeRepository = greeting.ObtainsCandidateList();
+                new Employee("zaafrani", "Gabriel", "gz@hotmail.com", new DateTime(1990, 09, 09)),
+                new Employee("zaafrani", "Michael", "mz@hotmail.com", new DateTime(1991, 09, 29))
+            };
+            // RUN
+
+            repo.InjectEmployeesToSystem(employees).Returns( new EmployeeRepository(employees));
+
+
+            var employeeRepository = greeting.InjectEmployeesToSystem(employees);
             var birthdayEmployees = new BirthdayEmployeesService(employeeRepository);
             // ARRANGE
             EmployeeRepository employeeList =  birthdayEmployees.BirthdayList(29,09);
@@ -44,13 +48,17 @@ namespace BirthdayGreetingTest.BirthdayEmployees
             {
                 new Employee("zaafrani","Gabriel","gz@hotmail.com",new DateTime(1990,09,09))
             };
-            // RUN
-            repo.ObtainsCandidateList().Returns(new List<Employee>()
+
+            var employes = new List<Employee>()
             {
-                new Employee("zaafrani","Gabriel","gz@hotmail.com",new DateTime(1990,09,09)),
-                new Employee("zaafrani","Michael","mz@hotmail.com",new DateTime(1991,09,29))
-            });
-            var employeeRepository = greeting.ObtainsCandidateList();
+                new Employee("zaafrani", "Gabriel", "gz@hotmail.com", new DateTime(1990, 09, 09)),
+                new Employee("zaafrani", "Michael", "mz@hotmail.com", new DateTime(1991, 09, 29))
+            };
+
+            // RUN
+            repo.InjectEmployeesToSystem(employes).Returns(new EmployeeRepository(employes));
+            var employeeRepository = greeting.InjectEmployeesToSystem(employes);
+
             var birthdayEmployees = new BirthdayEmployeesService(employeeRepository);
             // ARRANGE
             EmployeeRepository employeeList = birthdayEmployees.BirthdayList(09, 09);

@@ -6,6 +6,6 @@ namespace BirthdayGreetingTest.Repository
 {
     public interface IRepository
     {
-        List<Employee> ObtainsCandidateList();
+        EmployeeRepository InjectEmployeesToSystem(List<Employee> employees);
     }
 }
