@@ -2,6 +2,8 @@
 using BirthdayGreetingTest.Repository;
 using NUnit.Framework;
 using System.Collections.Generic;
+using BirthdayGreetingTest.BirthdayCounting;
+using BirthdayGreetingTest.BirthdayEmployees;
 
 namespace BirthdayGreeting2
 {
@@ -23,11 +25,23 @@ namespace BirthdayGreeting2
         {
             sender.Send(employee);
         }
-
+        /*
         public EmployeeRepository InjectEmployeesToSystem(List<Employee> employees)
         {
-            var candidateRepository = this.repository.InjectEmployeesToSystem(employees);
-            return candidateRepository;
+            var employeeRepository = this.repository.InjectEmployeesToSystem(employees);
+            return employeeRepository;
+        }
+        */
+        public BirthdayEmployeesService InjectEmployeesToSystemForObtainBirthdayList(List<Employee> employees)
+        {
+            var employeeRepository = this.repository.InjectEmployeesToSystem(employees);
+            return new BirthdayEmployeesService(employeeRepository);
+        }
+
+        public BirthdayCounter InjectEmplyeesToSystemForObtainCounterList(List<Employee> employees)
+        {
+            var employeeRepository = this.repository.InjectEmployeesToSystem(employees);
+            return new BirthdayCounter(employeeRepository);
         }
     }
 }

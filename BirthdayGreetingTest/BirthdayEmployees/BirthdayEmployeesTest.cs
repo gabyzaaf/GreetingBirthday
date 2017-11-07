@@ -31,11 +31,11 @@ namespace BirthdayGreetingTest.BirthdayEmployees
             repo.InjectEmployeesToSystem(employees).Returns( new EmployeeRepository(employees));
 
 
-            var employeeRepository = greeting.InjectEmployeesToSystem(employees);
-            var birthdayEmployees = new BirthdayEmployeesService(employeeRepository);
+            var birthdayEmployees = greeting.InjectEmployeesToSystemForObtainBirthdayList(employees);
+            
             // ARRANGE
-            EmployeeRepository employeeList =  birthdayEmployees.BirthdayList(29,09);
-            Check.That(employeeList.Contain(new Employee("zaafrani", "Michael", "mz@hotmail.com", new DateTime(1991, 09, 29)))).IsTrue();
+            var employeeList =  birthdayEmployees.BirthdayList(29,09);
+            Check.That(birthdayEmployees.Exist(new Employee("zaafrani", "Michael", "mz@hotmail.com", new DateTime(1991, 09, 29)))).IsTrue();
         }
 
         [Test]
@@ -57,13 +57,12 @@ namespace BirthdayGreetingTest.BirthdayEmployees
 
             // RUN
             repo.InjectEmployeesToSystem(employes).Returns(new EmployeeRepository(employes));
-            var employeeRepository = greeting.InjectEmployeesToSystem(employes);
-
-            var birthdayEmployees = new BirthdayEmployeesService(employeeRepository);
+            var birthdayEmployees = greeting.InjectEmployeesToSystemForObtainBirthdayList(employes);
+            
             // ARRANGE
-            EmployeeRepository employeeList = birthdayEmployees.BirthdayList(09, 09);
-            List<Employee> employees =  employeeList.ObtainEmployees();
-            Check.That(employees.SequenceEqual(employeesEstimate) && employeesEstimate.SequenceEqual(employees)).IsTrue();
+            var employeeList = birthdayEmployees.BirthdayList(09, 09);
+            
+            Check.That(employeeList.SequenceEqual(employeesEstimate) && employeesEstimate.SequenceEqual(employeeList)).IsTrue();
         }
     }
 }

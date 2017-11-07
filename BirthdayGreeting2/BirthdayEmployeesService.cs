@@ -1,4 +1,7 @@
-﻿using BirthdayGreeting2;
+﻿using System;
+using System.Collections.Generic;
+using BirthdayGreeting2;
+using NUnit.Framework;
 
 namespace BirthdayGreetingTest.BirthdayEmployees
 {
@@ -11,10 +14,26 @@ namespace BirthdayGreetingTest.BirthdayEmployees
             this.employeeRepository = employeeRepository;
         }
 
-        public EmployeeRepository BirthdayList(int day, int month)
+        public List<Employee> BirthdayList(int day, int month)
         {
-            EmployeeRepository employeeRepositorytmp = employeeRepository.BirthdayIsWithEmailValid(day, month);
-            return employeeRepositorytmp;
+            this.employeeRepository = employeeRepository.BirthdayIsWithEmailValid(day, month);
+            return new List<Employee>(this.employeeRepository.ObtainEmployees());
         }
+
+        public Boolean Exist(Employee employe)
+        {
+            var employees = this.employeeRepository.ObtainEmployees();
+            foreach (var employee in employees)
+            {
+                if (employee.Equals(employe))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+
     }
 }

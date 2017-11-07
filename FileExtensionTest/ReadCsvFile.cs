@@ -85,14 +85,14 @@ namespace FileExtensionTest
             IRepository repo = new FileRepo();
             var employees = ReadEmployeesFile("Employees.csv");
             BirthdayGreeting birthdayGreeting = new BirthdayGreeting(repo,null);
-            var employeeRepository = birthdayGreeting.InjectEmployeesToSystem(employees);
+            var service = birthdayGreeting.InjectEmployeesToSystemForObtainBirthdayList(employees);
 
             // RUN
-            BirthdayEmployeesService service = new BirthdayEmployeesService(employeeRepository);
+           
             var employeeList = service.BirthdayList(29, 09);
 
             // ASSERT
-            Check.That(employeeList.Contain(new Employee("zaafrani", "gabriel", "gabriel.zaafrani@gmail.com",
+            Check.That(service.Exist(new Employee("zaafrani", "gabriel", "gabriel.zaafrani@gmail.com",
                 new DateTime(1990, 09, 29)))).IsTrue();
 
         }
