@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using BirthdayGreeting2;
+using BirthdayGreetingTest.BirthdayEmployees;
+using BirthdayGreetingTest.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NFluent;
 using NUnit.Framework;
@@ -74,6 +76,25 @@ namespace FileExtensionTest
                 employees.Add(new Employee(name, firstname, email, new DateTime(year, month, day)));
             }
             return employees;
+        }
+
+        [Test]
+        public void Should_Obtains_The_Birthday()
+        {
+            // SETUP
+            IRepository repo = new FileRepo();
+            var employees = ReadEmployeesFile("Employees.csv");
+            BirthdayGreeting birthdayGreeting = new BirthdayGreeting(repo,null);
+            var employeeRepository = birthdayGreeting.InjectEmployeesToSystem(employees);
+
+            // RUN
+            BirthdayEmployeesService service = new BirthdayEmployeesService(employeeRepository);
+            var employeeList = service.BirthdayList(29, 09);
+
+            // ASSERT
+            Check.That(employeeList.Contain(new Employee("zaafrani", "gabriel", "gabriel.zaafrani@gmail.com",
+                new DateTime(1990, 09, 29)))).IsTrue();
+
         }
     }
 }
