@@ -2,7 +2,7 @@
 
 namespace BirthdayGreetingTest.BirthdayEmployees
 {
-    internal class BirthdayEmployeesService
+    public class BirthdayEmployeesService
     {
         private EmployeeRepository employeeRepository;
 
@@ -13,8 +13,8 @@ namespace BirthdayGreetingTest.BirthdayEmployees
 
         public EmployeeRepository BirthdayList(int day, int month)
         {
-          EmployeeRepository employeeRepositorytmp = employeeRepository.BirthdayIsWithEmailValid(day, month);
-          return employeeRepositorytmp;
+            EmployeeRepository employeeRepositorytmp = employeeRepository.BirthdayIsWithEmailValid(day, month);
+            return employeeRepositorytmp;
         }
     }
 }
