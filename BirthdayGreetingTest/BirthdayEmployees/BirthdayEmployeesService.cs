@@ -13,7 +13,7 @@ namespace BirthdayGreetingTest.BirthdayEmployees
 
         public EmployeeRepository BirthdayList(int day, int month)
         {
-          EmployeeRepository employeeRepositorytmp = employeeRepository.BirthdayIs(day, month);
+          EmployeeRepository employeeRepositorytmp = employeeRepository.BirthdayIsWithEmailValid(day, month);
           return employeeRepositorytmp;
         }
     }

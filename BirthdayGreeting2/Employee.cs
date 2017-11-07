@@ -43,6 +43,11 @@ namespace BirthdayGreeting2
             return birthday.Day == day && birthday.Month == month;
         }
 
+        public bool EmailIsValid()
+        {
+            return email.IsValid();
+        }
+
 
     }
 }

@@ -16,7 +16,12 @@ namespace BirthdayGreeting2
 
         public EmployeeRepository BirthdayIs(int day, int month)
         {
-            return new EmployeeRepository(employees.Where(c => c.IsThisBirthday(day,month)).ToList());
+            return new EmployeeRepository(employees.Where(c => c.IsThisBirthday(day,month) ).ToList());
+        }
+
+        public EmployeeRepository BirthdayIsWithEmailValid(int day, int month)
+        {
+            return new EmployeeRepository(employees.Where(c => c.IsThisBirthday(day, month) && c.EmailIsValid()).ToList());
         }
 
         public Boolean Contain(Employee employe)
@@ -35,6 +40,10 @@ namespace BirthdayGreeting2
         {
             return this.employees.Count;
         }
-      
+
+        public List<Employee> ObtainEmployees()
+        {
+           return new List<Employee>(employees);
+        }
     }
 }
