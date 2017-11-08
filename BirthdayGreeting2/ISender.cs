@@ -4,6 +4,6 @@ namespace BirthdayGreeting2
 {
     public interface ISender
     {
-        void Send(List<Employee> employee);
+        void Send(List<EmployeeInformations> employee);
     }
 }

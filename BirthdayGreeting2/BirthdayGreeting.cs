@@ -21,17 +21,11 @@ namespace BirthdayGreeting2
             this.sender = sender;
         }
 
-        public void Send(List<Employee> employee)
+        public void Send(List<EmployeeInformations> employee)
         {
             sender.Send(employee);
         }
-        /*
-        public EmployeeRepository InjectEmployeesToSystem(List<Employee> employees)
-        {
-            var employeeRepository = this.repository.InjectEmployeesToSystem(employees);
-            return employeeRepository;
-        }
-        */
+       
         public BirthdayEmployeesService InjectEmployeesToSystemForObtainBirthdayList(List<Employee> employees)
         {
             var employeeRepository = this.repository.InjectEmployeesToSystem(employees);

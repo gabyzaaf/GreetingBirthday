@@ -7,13 +7,13 @@ namespace BirthdayGreeting2
 {
     public class GreetingSenderTest
     {
-        private List<Employee> employees;
+        private List<EmployeeInformations> employees;
         [SetUp]
         public void Init()
         {
-            employees = new List<Employee>()
+            employees = new List<EmployeeInformations>()
             {
-                new Employee("Zaafrani", "Gabriel", "gabriel.zafrani@email.com", new DateTime(1990, 09, 20))
+                new EmployeeInformations("Zaafrani", "Gabriel", Email.Of("gabriel.zafrani@email.com"), new DateTime(1990, 09, 20))
             };
         }
 

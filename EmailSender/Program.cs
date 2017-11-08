@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace EmailSender
 {
-    class Program
+    class Email
     {
         static void Main(string[] args)
         {
+            
         }
     }
 }
