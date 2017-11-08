@@ -17,7 +17,7 @@ namespace FileInjector
             var birthdayGreeting = new BirthdayGreeting(new FileRepo(), null);
 
             var birthdayEmployeesService = birthdayGreeting.InjectEmployeesToSystemForObtainBirthdayList(employee);
-            var liste = birthdayEmployeesService.BirthdayList(29, 09);
+            var liste = birthdayEmployeesService.BirthdayListInformations(29, 09);
 
             liste.ForEach(c => Console.WriteLine(c));
         }

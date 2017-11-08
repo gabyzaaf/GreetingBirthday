@@ -75,7 +75,7 @@ namespace FileExtensionTest
 
             // RUN
            
-            var employeeList = service.BirthdayList(29, 09);
+            var employeeList = service.BirthdayListInformations(29, 09);
           
             // ASSERT
             Check.That(service.Exist(new Employee("zaafrani", "gabriel", "gabriel.zaafrani@gmail.com",

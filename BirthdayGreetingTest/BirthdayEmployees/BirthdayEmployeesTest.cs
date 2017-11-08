@@ -34,7 +34,7 @@ namespace BirthdayGreetingTest.BirthdayEmployees
             var birthdayEmployees = greeting.InjectEmployeesToSystemForObtainBirthdayList(employees);
             
             // ARRANGE
-            var employeeList =  birthdayEmployees.BirthdayList(29,09);
+            var employeeList =  birthdayEmployees.BirthdayListInformations(29,09);
             Check.That(birthdayEmployees.Exist(new Employee("zaafrani", "Michael", "mz@hotmail.com", new DateTime(1991, 09, 29)))).IsTrue();
         }
 
@@ -44,9 +44,15 @@ namespace BirthdayGreetingTest.BirthdayEmployees
             // SETUP
             var repo = NSubstitute.Substitute.For<IRepository>();
             var greeting = new BirthdayGreeting(repo, null);
-            var employeesEstimate = new List<Employee>()
+            var employeesEstimate = new List<EmployeeInformations>()
             {
-                new Employee("zaafrani","Gabriel","gz@hotmail.com",new DateTime(1990,09,09))
+                new EmployeeInformations("zaafrani","Gabriel",Email.Of("gz@hotmail.com"),new DateTime(1990,09,09))
+            };
+
+            var employesInformationses = new List<EmployeeInformations>()
+            {
+                new EmployeeInformations("zaafrani", "Gabriel", Email.Of("gz@hotmail.com"), new DateTime(1990, 09, 09)),
+                new EmployeeInformations("zaafrani", "Michael", Email.Of("mz@hotmail.com"), new DateTime(1991, 09, 29))
             };
 
             var employes = new List<Employee>()
@@ -60,7 +66,7 @@ namespace BirthdayGreetingTest.BirthdayEmployees
             var birthdayEmployees = greeting.InjectEmployeesToSystemForObtainBirthdayList(employes);
             
             // ARRANGE
-            var employeeList = birthdayEmployees.BirthdayList(09, 09);
+            var employeeList = birthdayEmployees.BirthdayListInformations(09, 09);
             
             Check.That(employeeList.SequenceEqual(employeesEstimate) && employeesEstimate.SequenceEqual(employeeList)).IsTrue();
         }

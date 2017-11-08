@@ -14,7 +14,7 @@ namespace BirthdayGreetingTest.BirthdayEmployees
             this.employeeRepository = employeeRepository;
         }
 
-        public List<Employee> BirthdayList(int day, int month)
+        private List<Employee> BirthdayList(int day, int month)
         {
             this.employeeRepository = employeeRepository.BirthdayIsWithEmailValid(day, month);
             return new List<Employee>(this.employeeRepository.ObtainEmployees());

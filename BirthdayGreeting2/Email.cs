@@ -36,5 +36,9 @@ namespace BirthdayGreeting2
         }
 
 
+        public static Email Of(string mzHotmailCom)
+        {
+            return new Email(mzHotmailCom);
+        }
     }
 }
